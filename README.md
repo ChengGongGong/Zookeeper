@@ -38,9 +38,10 @@
     事务一致性：zk采用递增的事务id号(zxid)来标识事务，所有的提议都被在被提出来的时候加上了zxid，其中zxid是一个64位的数字，高32位用于标识leader关系是否改变，低32位用于递增计数。
     
     server状态：
-      looking，当前server不知道leader是谁，正在搜寻；leading，当前server即为选举出来的leader；
-      
-      following,leader已经选举出来，当前server与之同步；observing，Observer 状态，对应节点为 Observer，该节点不参与 Leader 选举。
+      looking：当前server不知道leader是谁，正在搜寻；
+      leading：当前server即为选举出来的leader；
+      following：leader已经选举出来，当前server与之同步；
+      observing：Observer 状态，对应节点为 Observer，该节点不参与 Leader 选举。
  # Zookeeper的重要概念
  ## 数据模型(Data model)：
     采用层次化的多叉树形结构，每个节点上都可以存储数据，这些数据可以是数字、字符串或者二级制序列，并且每个节点还可以拥有N个子节点,最上层的根节点以“/”代表；
