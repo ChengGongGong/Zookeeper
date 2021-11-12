@@ -61,7 +61,8 @@
       临时顺序节点(ephemeral_sequential)：除了具有临时节点的特性之外，节点的名称还具有顺序性
       
       数据结构：包含两部分stat状态信息、data节点存放的数据的具体内容，其中stat状态信息如下所示：
-      
+![image](https://user-images.githubusercontent.com/41152743/141439640-8bb943ec-e351-4f67-aaf5-483b64d70026.png)
+
       cZxid	-> create ZXID，即该数据节点被创建时的事务 id
       ctime	-> create time，即该节点的创建时间
       mZxid	-> modified ZXID，即该节点最终一次更新时的事务 id
