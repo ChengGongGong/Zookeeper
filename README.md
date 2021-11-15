@@ -187,18 +187,18 @@
     
     1. prepare阶段：proposer将具有全局唯一性的、递增的提案编号N发送给所有的Acceptor,Acceptor接收到提案后，会将该提案编号记录在本地，
     每个Acceptor会仅会接收编号大于自己本地的提案，并将之前接受过的最大编号反馈给proposer。
-    ![Image_text](https://camo.githubusercontent.com/958acf97caf9cb2405b7004dceb966a4c587f43bcc78af3bf150c932dbdf53e8/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f696d675f636f6e766572742f32326538643531326439353436373662646630636339326432303061663865662e706e67)
+![Image_text](https://camo.githubusercontent.com/958acf97caf9cb2405b7004dceb966a4c587f43bcc78af3bf150c932dbdf53e8/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f696d675f636f6e766572742f32326538643531326439353436373662646630636339326432303061663865662e706e67)
     
     2.accept阶段：当一个提案被Propersoer提出后，如果收到了超过半数的Acceptor的批准(Properser本身同意)，则向所有的Acceptor发送真正的提案[N,V]，包括提案的内容和编号，
     其中V就是收到的想要值编号最大的提案的value，如果响应中不包含任何提案，则V由Properser自己决定；
     此时，Acceptor收到一个[N,V]的提案，如果N大于本地的提案编号，则接受提案并执行，并反馈给Proposer。
     如果没有超过半数的accept，就递增此次提案的编号，重新进入prepare阶段。
     具体流程如下：
-    ![Image_text](https://upload-images.jianshu.io/upload_images/1752522-44c5a422f917bfc5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Image_text](https://upload-images.jianshu.io/upload_images/1752522-44c5a422f917bfc5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
     
     3.Learner学习被选定的value：
     
-    ![Image_text](https://upload-images.jianshu.io/upload_images/1752522-0fab48ed2bdf358a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Image_text](https://upload-images.jianshu.io/upload_images/1752522-0fab48ed2bdf358a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
     
     问题：存在死循环问题，两个Proposer依次提出编号递增的提案，都无法完成第二阶段，没有value被选定。
     解决：选择一个主Proposer，只有主proposer可以提出提案。
