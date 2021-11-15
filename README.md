@@ -100,7 +100,9 @@
       
     该协议保证所有的写操作都必须通过Leader完成，Leader写入本地日志后再复制到所有的Follower节点。
     一旦leader节点无法工作，Zab协议能够自动从follower节点中重新选出一个合适的替代者，即为新的leader。
-## 1. 写操作 
+## 1. 写操作
+![image](https://user-images.githubusercontent.com/41152743/141733873-742e284e-29be-4cd5-80a2-4f8b6f1fcdc6.png)
+
 ### 写leader
     客户端直接向leader发起写请求，leader将写请求以proposal的形式发给所有Follower，并等待ACK，得到超过一半的ACK向所有的follower和observer发送commit，将处理结果返回给客户端。
     (注：此处ack信号，leader自身默认有一个ack)
